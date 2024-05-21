@@ -3,8 +3,11 @@ package hello.exception.servlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.awt.*;
 
 @Slf4j
 @Controller
@@ -32,7 +35,10 @@ public class ErrorPageController {
         return "error-page/500";
     }
 
+    @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
+
     private void printErrorInfo(HttpServletRequest request) {
+
         log.info("ERROR_EXCEPTION: {}", request.getAttribute(ERROR_EXCEPTION));
         log.info("ERROR_EXCEPTION_TYPE: {}", request.getAttribute(ERROR_EXCEPTION_TYPE));
         log.info("ERROR_MESSAGE: {}", request.getAttribute(ERROR_MESSAGE));
